@@ -1,0 +1,14 @@
+$maxWidth: 100%;
+$textareaWidth: 100%;
+
+.MarkdownEditor {
+    & > .pure-group > textarea[name=mkinput] {
+        width:  $textareaWidth;
+        height: 300px;
+    }
+
+    & > .content {
+        width:  $textareaWidth;
+        height: 100%;
+    }
+}
