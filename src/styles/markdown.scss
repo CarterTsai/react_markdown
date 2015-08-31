@@ -11,7 +11,9 @@ $textareaWidth: 100%;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-        resize:none;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        resize: none;
     }
 
     & > .content {

@@ -25,23 +25,32 @@ export default React.createClass({
     };
   },
   changeEdit: function() {
-      console.log();
     if (this.state.isEdit) {
       this.setState({
         isEdit: !this.state.isEdit,
         previewStyle: showStyle,
         noPreviewStyle: hideStyle
-      });
+        });
     } else {
       this.setState({
         isEdit: !this.state.isEdit,
         previewStyle: hideStyle,
         noPreviewStyle: showStyle
       });
+      // Auto Textarea Height
+      var textareas = document.getElementsByTagName("textarea");
+
+      for (var textareaIdx = 0; textareaIdx < textareas.length; textareaIdx++) {
+          console.log(textareas[textareaIdx].scrollHeight);
+          textareas[textareaIdx].style.height = "1px";
+          textareas[textareaIdx].style.height = (25 + textareas[textareaIdx].scrollHeight)+"px";
+      }
     }
   },
   typeWord: function(e) {
-      
+      // auto adjust height
+      e.target.style.height = "1px";
+      e.target.style.height = (25+e.target.scrollHeight)+"px";
   },
   handleChange: function() {
     this.setState({
@@ -51,7 +60,7 @@ export default React.createClass({
   render: function() {
     return (
       <div className="MarkdownEditor">
-        <Button onClick={this.changeEdit} bsStyle={this.state.isEdit?"primary":""} type="button">Edit</Button>
+        <Button onClick={this.changeEdit} bsStyle={this.state.isEdit?"primary":"default"} type="button">Edit</Button>
         <div className="pure-group">
           <textarea className="pure-input-1-2" defaultValue={this.state.value} name="mkinput" onChange={this.handleChange} onKeyUp={this.typeWord} ref="textarea" style={this.state.previewStyle}/>
         </div>
