@@ -1,14 +1,26 @@
+
+
 $maxWidth: 100%;
 $textareaWidth: 100%;
 
 .MarkdownEditor {
     & > .pure-group > textarea[name=mkinput] {
         width:  $textareaWidth;
-        height: 300px;
+        height: 100%;
+        padding: 15px 15px 15px 25px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        resize:none;
     }
 
     & > .content {
         width:  $textareaWidth;
         height: 100%;
+        border: 1px solid #ccc;
+        padding: 0 15px 15px 25px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
     }
 }

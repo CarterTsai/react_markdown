@@ -19,22 +19,29 @@ export default React.createClass({
   getInitialState: function() {
     return {
       previewStyle: this.props.isEdit? showStyle: hideStyle,
-      isEdit: this.props.isEdit,
+      noPreviewStyle: this.props.isEdit? hideStyle :showStyle ,
+      isEdit: this.props.isEdit?this.props.isEdit:true,
       value: 'Hello Markdwon \n ========== \n >' + ' This is reactjs + babel + pure example \n\n ### Hello Markdown'
     };
   },
   changeEdit: function() {
+      console.log();
     if (this.state.isEdit) {
       this.setState({
         isEdit: !this.state.isEdit,
-        previewStyle: showStyle
+        previewStyle: showStyle,
+        noPreviewStyle: hideStyle
       });
     } else {
       this.setState({
         isEdit: !this.state.isEdit,
-        previewStyle: hideStyle
+        previewStyle: hideStyle,
+        noPreviewStyle: showStyle
       });
     }
+  },
+  typeWord: function(e) {
+      
   },
   handleChange: function() {
     this.setState({
@@ -44,15 +51,15 @@ export default React.createClass({
   render: function() {
     return (
       <div className="MarkdownEditor">
-        <Button onClick={this.changeEdit} bsStyle="primary" type="button">Edit</Button>
+        <Button onClick={this.changeEdit} bsStyle={this.state.isEdit?"primary":""} type="button">Edit</Button>
         <div className="pure-group">
-          <textarea className="pure-input-1-2" defaultValue={this.state.value} name="mkinput" onChange={this.handleChange} ref="textarea" style={this.state.previewStyle}/>
+          <textarea className="pure-input-1-2" defaultValue={this.state.value} name="mkinput" onChange={this.handleChange} onKeyUp={this.typeWord} ref="textarea" style={this.state.previewStyle}/>
         </div>
         <div className="content" dangerouslySetInnerHTML={{
           __html: Marked(this.state.value, {
             sanitize: true
           })
-        }}/>
+      }} style={this.state.noPreviewStyle}/>
       </div>
     );
   }
